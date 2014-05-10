@@ -1,0 +1,15 @@
+group400: danh0902, andrewly
+
+Danh Nguyen (danh0902)
+Andrew Yang (andrewly)
+
+We have the main checking the flags and argument values for the server settings.  The mode is then set to server on default or relay if the flag is given.
+There is then a while loop that continues to accept connections and starts off a new thread to execute the server functions for each accepted client.  This
+is done in IPV6 for the server connection so it can stay consistent for both IPV4 and IPV6 values if either were to be obtained.  The server functions 
+themselves are located in a "doit" function that contains a while loop that breaks when the connection is broken or HTTP 1.0 is the given version.  
+This is done to display persistence in connections for HTTP 1.1.  In this, the uri of the input is checked for specific functions that exectute if the 
+command is seen and use "continue" to avoid multiple commands going through at once.  The systems information is obtained from reading from a file
+descriptor that takes the values and outputs them.  The synthetic load requests are done through done through simple logic.  The serving of files uses
+parser helper functions to check the file types to output and does so except in the case where they try to access files not in the "files" folder.  The 
+widgets are executed in files/index.html where it uses the found local IP for the server IP.  There are seperate instances not included in which these
+IP values are replaced by the respective Amazon EC2 instance public IP addresses.  

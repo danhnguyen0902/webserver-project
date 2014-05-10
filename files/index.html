@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+  <title>Sysstat Widgets Demo</title>
+
+  <!-- 
+       The widgets are <div> and <span> elements with classes memstat
+       and loadavg, respectively.  
+       Change the 'url' attribute to point to your web service.
+    -->
+<script language="javascript" type="text/javascript" src="widget/sysstatwidgets.js">
+</script>
+<script type="text/javascript">
+function send(url, rselector) {
+    var $ = jQuerySysStatWidget;
+    $.get(url, function (response) {
+        $(rselector).html(response);
+    });
+}
+</script>
+<link rel="stylesheet" type="text/css" href="widget/jquery.css"></head>
+
+<body>
+  <p>This page display two widgets that display the physical memory
+  usage and the overall CPU load average of the machine that runs your 
+  web service.  Examine the HTML to see how these 'widgets' are embedded
+  into the page. </p>
+    
+  <p>
+  <script>var count = 0;</script>
+  <a href="#" onclick="javascript:send('/runloop', '#responsemsg');">Click here</a> to run a 15 second loop on this machine (which will result in an increase in the load average).
+      <span id="responsemsg"></span>
+  </p>
+
+  <p>
+  <a href="#" onclick="javascript:send('/allocanon', '#responsemsg2');">Click here</a> to force allocation of 64MB of physical
+        memory used as application (anonymous) memory.
+      <span id="responsemsg2"></span>
+  </p>
+
+  <p>
+  <a href="#" onclick="javascript:send('/freeanon', '#responsemsg3');">Click here</a> to force deallocation of last
+        chunk of allocated physical memory.
+      <span id="responsemsg3"></span>
+  </p>
+
+  <table>
+    <tbody><tr>
+      <th>Memory</th>
+
+      <th>CPU Load Average</th>
+    </tr>
+
+    <tr>
+      <td>
+        <div class="jqplot-target" id="meminfo" url="http://127.0.0.1:10100" update="5000" style="margin-top: 20px; margin-left: 20px; width: 180px; height: 400px; position: relative;"><canvas style="position: absolute; left: 0px; top: 0px;" class="jqplot-base-canvas" height="400" width="180"></canvas><div style="height: 0px; width: 0px;"></div><div class="jqplot-axis jqplot-xaxis" style="position: absolute; width: 180px; height: 14px; left: 0px; bottom: 0px;"><div style="position: absolute; left: 63.5px;" class="jqplot-xaxis-tick">cs3214.cs.vt.edu</div></div><div class="jqplot-axis jqplot-yaxis" style="position: absolute; height: 400px; width: 38px; left: 0px; top: 0px;"><div style="position: absolute; top: 369px;" class="jqplot-yaxis-tick">0M</div><div style="position: absolute; top: 295.8px;" class="jqplot-yaxis-tick">401M</div><div style="position: absolute; top: 222.6px;" class="jqplot-yaxis-tick">802M</div><div style="position: absolute; top: 149.4px;" class="jqplot-yaxis-tick">1204M</div><div style="position: absolute; top: 76.2px;" class="jqplot-yaxis-tick">1605M</div><div style="position: absolute; top: 3px;" class="jqplot-yaxis-tick">2007M</div></div><canvas style="position: absolute; left: 0px; top: 0px;" class="jqplot-grid-canvas" height="400" width="180"></canvas><canvas style="position: absolute; left: 48px; top: 10px;" class="jqplot-series-canvas" height="366" width="122"></canvas><table class="jqplot-table-legend" style="position: absolute; left: 60px; top: 22px;"><tbody><tr class="jqplot-table-legend"><td class="jqplot-table-legend" style="text-align:center;padding-top:0;"><div><div class="jqplot-table-legend-swatch" style="border-color:#8B3A3A;"></div></div></td><td class="jqplot-table-legend" style="padding-top:0;">Cached</td></tr><tr class="jqplot-table-legend"><td class="jqplot-table-legend" style="text-align:center;padding-top:0.5em;"><div><div class="jqplot-table-legend-swatch" style="border-color:#CD5555;"></div></div></td><td class="jqplot-table-legend" style="padding-top:0.5em;">Buffers</td></tr><tr class="jqplot-table-legend"><td class="jqplot-table-legend" style="text-align:center;padding-top:0.5em;"><div><div class="jqplot-table-legend-swatch" style="border-color:#000080;"></div></div></td><td class="jqplot-table-legend" style="padding-top:0.5em;">Anonymous</td></tr><tr class="jqplot-table-legend"><td class="jqplot-table-legend" style="text-align:center;padding-top:0.5em;"><div><div class="jqplot-table-legend-swatch" style="border-color:#008B00;"></div></div></td><td class="jqplot-table-legend" style="padding-top:0.5em;">Free</td></tr></tbody></table><canvas style="position: absolute; left: 48px; top: 10px;" class="jqplot-event-canvas" height="366" width="122"></canvas></div>
+      </td>
+
+      <td>
+        <div class="jqplot-target" id="loadavg" url="http://127.0.0.1:10100" update="2500" style="margin-top: 20px; margin-left: 20px; width: 600px; height: 400px; position: relative;"><canvas style="position: absolute; left: 0px; top: 0px;" class="jqplot-base-canvas" height="400" width="600"></canvas><div class="jqplot-title" style="position:absolute;top:0px;left:0px;width:600px;text-align:center;">cs3214.cs.vt.edu: 2/174</div><div class="jqplot-axis jqplot-xaxis" style="position: absolute; width: 600px; bottom: 0px; left: 0px;"></div><div class="jqplot-axis jqplot-yaxis" style="position: absolute; height: 400px; width: 21px; left: 0px; top: 0px;"><div style="position: absolute; top: 383px;" class="jqplot-yaxis-tick">-0.0</div><div style="position: absolute; white-space: nowrap; top: 323.5px;" class="jqplot-yaxis-tick">0.2</div><div style="position: absolute; white-space: nowrap; top: 264px;" class="jqplot-yaxis-tick">0.3</div><div style="position: absolute; white-space: nowrap; top: 204.5px;" class="jqplot-yaxis-tick">0.5</div><div style="position: absolute; white-space: nowrap; top: 145px;" class="jqplot-yaxis-tick">0.7</div><div style="position: absolute; white-space: nowrap; top: 85.5px;" class="jqplot-yaxis-tick">0.8</div><div style="position: absolute; white-space: nowrap; top: 26px;" class="jqplot-yaxis-tick">1.0</div></div><canvas style="position: absolute; left: 0px; top: 0px;" class="jqplot-grid-canvas" height="400" width="600"></canvas><canvas style="position: absolute; left: 31px; top: 33px;" class="jqplot-series-canvas" height="357" width="559"></canvas><canvas style="position: absolute; left: 31px; top: 33px;" class="jqplot-event-canvas" height="357" width="559"></canvas></div>
+      </td>
+    </tr>
+  </tbody></table>
+
+<p>A text-only version of the load average widget: 
+  <span class="loadavg-text" url="http://127.0.0.1:10100" update="4000" style="font-weight: bold">Load Average: 0.00 0.00 0.00 Threads: 1/175</span>
+</p>
+
+
+</body></html>
