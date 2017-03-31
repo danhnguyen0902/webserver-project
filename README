@@ -13,3 +13,6 @@ descriptor that takes the values and outputs them.  The synthetic load requests 
 parser helper functions to check the file types to output and does so except in the case where they try to access files not in the "files" folder.  The 
 widgets are executed in files/index.html where it uses the found local IP for the server IP.  There are seperate instances not included in which these
 IP values are replaced by the respective Amazon EC2 instance public IP addresses.  
+
+Link to all the problems:
+http://courses.cs.vt.edu/~cs3214/spring2014/projects/projects.php
